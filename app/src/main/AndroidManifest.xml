@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrizaApps">
         <activity
-            android:name=".MainActivity"
+            android:name=".Pertemuan4.FourthActivity"
             android:exported="false" />
         <activity
             android:name=".Pertemuan2.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
