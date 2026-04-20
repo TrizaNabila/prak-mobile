@@ -16,7 +16,7 @@ class FourthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
+        Log.e("onCreate", "{nama_activity} dibuat pertama kali")
         setContentView(R.layout.activity_fourth)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -37,8 +37,8 @@ class FourthActivity : AppCompatActivity() {
 
         Log.i("Data Intent ==", "Nama: $nama , Usia: $umur, Asal: $asal")
         }
-        Log.e("onCreate", "{nama_activity} dibuat pertama kali")
-    }
+
+
 
     override fun onStart() {
         super.onStart()
