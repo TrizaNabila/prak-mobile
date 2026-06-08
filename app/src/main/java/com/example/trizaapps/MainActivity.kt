@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.trizaapps.Pertemuan4.FourthActivity
-import com.example.trizaapps.databinding.ActivityAuthBinding
+import com.example.trizaapps.home.Pertemuan4.FourthActivity
 import com.example.trizaapps.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -28,23 +27,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+
         binding.btnToFourth.setOnClickListener {
-
             val intent = Intent(this, FourthActivity::class.java)
-
             intent.putExtra("nama", "Politeknik Caltex Riau")
             intent.putExtra("asal", "Rumbai")
             intent.putExtra("umur", 25)
-
             startActivity(intent)
-            finish()
+            // KONTROL: 'finish()' dihapus agar ketika di-back dari FourthActivity tidak langsung keluar aplikasi
         }
+
         binding.btnLogout.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
                 .setMessage("Apakah Anda yakin ingin keluar?")
                 .setPositiveButton("Ya") { dialog, _ ->
-                    sharedPref.edit() {
+                    sharedPref.edit {
                         clear()
                     }
                     dialog.dismiss()
@@ -58,5 +56,4 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-
 }

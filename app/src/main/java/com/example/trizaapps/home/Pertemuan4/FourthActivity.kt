@@ -1,4 +1,4 @@
-package com.example.trizaapps.Pertemuan4
+package com.example.trizaapps.home.Pertemuan4
 
 import android.content.Intent
 import android.os.Bundle

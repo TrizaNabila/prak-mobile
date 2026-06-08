@@ -1,4 +1,4 @@
-package com.example.trizaapps.Pertemuan2
+package com.example.trizaapps.home.Pertemuan2
 fun main(){
     println("Hai rekan-rekan...")
     println("Selamat datang di bahasa pemrograman kotlin")

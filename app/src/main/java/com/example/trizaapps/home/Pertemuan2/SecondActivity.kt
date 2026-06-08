@@ -1,4 +1,4 @@
-package com.example.trizaapps.Pertemuan2
+package com.example.trizaapps.home.Pertemuan2
 
 import android.os.Bundle
 import android.util.Log
