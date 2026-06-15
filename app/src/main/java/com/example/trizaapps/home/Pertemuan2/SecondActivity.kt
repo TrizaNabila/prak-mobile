@@ -11,14 +11,26 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.trizaapps.R
 
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_second)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            title = "Activity Second"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -27,10 +39,18 @@ class SecondActivity : AppCompatActivity() {
         val btnSubmit: Button = findViewById(R.id.btnSubmit)
 
         btnSubmit.setOnClickListener {
-            //Mengambil value dari inputNama dan menampilkan di Logcat
             val nama = inputNama.text
-            //Log.e("Klik btnSubmit","Tombol berhasil di tekan. Isi dari inputNama = $nama")
-
             Toast.makeText(this, "Hallo $nama", Toast.LENGTH_SHORT).show()
         }
-    }}
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+}

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Bagian Atas: Tombol bawaan kamu (Pertemuan 4 & Logout) tetap dipertahankan -->
     <Button
         android:id="@+id/btnToFourth"
         android:layout_width="wrap_content"
@@ -27,14 +28,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnToFourth" />
 
-    <androidx.fragment.app.FragmentContainerView
+    <!-- Wadah Fragment: Diubah menjadi dinamis (menggunakan FrameLayout) agar bisa berganti halaman -->
+    <FrameLayout
         android:id="@+id/fragmentContainer"
-        android:name="com.example.trizaapps.home.FragmentHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+
+    <!-- Komponen Navigasi Bawah: Menghubungkan file bottom_nav_menu yang dibuat sebelumnya -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogout"
-        tools:layout="@layout/fragment_home" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,16 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnPertemuan3.setOnClickListener {
+            val intent = Intent(requireContext(), com.example.trizaapps.home.pertemuan_3.ThirdActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan5.setOnClickListener {
+            val intent = Intent(requireContext(), com.example.trizaapps.home.pertemuan_5.FifthActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnPertemuan13.setOnClickListener {
             val intent = Intent(requireContext(), ThirteenthActivity::class.java)
             startActivity(intent)

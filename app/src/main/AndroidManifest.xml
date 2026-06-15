@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -46,7 +49,24 @@
             android:exported="false" />
 
         <activity
+            android:name=".home.pertemuan_3.ThirdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.pertemuan_3.ThirdResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.pertemuan_5.FifthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.pertemuan_5.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.pertemuan13.ThirteenthActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".utils.ReminderReceiver"
+            android:enabled="true"
             android:exported="false" />
 
         <provider

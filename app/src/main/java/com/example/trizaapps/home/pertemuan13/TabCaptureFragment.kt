@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.trizaapps.databinding.FragmentTabCaptureBinding
+import com.example.trizaapps.utils.PermissionHelper
 
 class TabCaptureFragment : Fragment() {
 
@@ -59,22 +60,20 @@ class TabCaptureFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnCapture.setOnClickListener {
-            if (hasCameraPermission()) {
-                openCamera()
+            if (!PermissionHelper.hasPermission(
+                    requireActivity(),
+                    Manifest.permission.CAMERA)) {
+                PermissionHelper.requestPermission(
+                    permissionLauncher,
+                    Manifest.permission.CAMERA
+                )
             } else {
-                permissionLauncher.launch(Manifest.permission.CAMERA)
+                openCamera()
             }
         }
     }
 
     // 5️⃣ POIN 5: Lengkapi dengan fungsi pendukung untuk membuka kamera dan menyimpan gambar
-    private fun hasCameraPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         // Note: For Android 11+ (API 30+), ensure queries are added to Manifest if resolveActivity is used
