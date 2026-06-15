@@ -1,5 +1,6 @@
 package com.example.trizaapps
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -10,35 +11,33 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Kode ini harus selalu dipanggil saat butuh akses "user_pref"
-        val sharedPref = getSharedPreferences("UserPrefs",MODE_PRIVATE)
 
-        //Kondisi jika isLogin bernilai true
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
         val isLogin = sharedPref.getBoolean("isLogin", false)
-        if (isLogin) {
-            //Panggil Intent untuk ke MainActivity
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
 
-            finish() //Kill AuthActivity
-        }
-            lifecycleScope.launch {
-                delay(2000) //simulasi pengambilan data selama 2 detik
-
-                var intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+        lifecycleScope.launch {
+            delay(2000) // simulasi pengambilan data selama 2 detik
+            
+            val intent = if (isLogin) {
+                Intent(this@SplashScreenActivity, BaseActivity::class.java)
+            } else {
+                Intent(this@SplashScreenActivity, AuthActivity::class.java)
             }
+            
+            startActivity(intent)
+            finish()
         }
     }
-
+}

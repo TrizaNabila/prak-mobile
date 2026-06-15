@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.trizaapps.databinding.FragmentHomeBinding
-import com.example.trizaapps.home.pertemuan13.ThirteenthActivity // Perbaikan nama package di sini
+import com.example.trizaapps.home.pertemuan13.ThirteenthActivity
+import com.example.trizaapps.home.pertemuan_6.SixthActivity
 
 class FragmentHome : Fragment() {
 
@@ -32,6 +33,11 @@ class FragmentHome : Fragment() {
 
         binding.btnPertemuan5.setOnClickListener {
             val intent = Intent(requireContext(), com.example.trizaapps.home.pertemuan_5.FifthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan6.setOnClickListener {
+            val intent = Intent(requireContext(), SixthActivity::class.java)
             startActivity(intent)
         }
 

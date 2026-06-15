@@ -12,6 +12,7 @@ import com.example.trizaapps.databinding.ActivityAuthBinding
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,35 +24,24 @@ class AuthActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Kode ini harus selalu dipanggil saat butuh akses "user_pref"
-        val sharedPref = getSharedPreferences("UserPrefs",MODE_PRIVATE)
 
-        //Kondisi jika isLogin bernilai true
-        val isLogin = sharedPref.getBoolean("isLogin", false)
-        if (isLogin) {
-            //Panggil Intent untuk ke MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-
-            finish() //Kill AuthActivity
-        }
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
+
             if (username == password && username.isNotEmpty()) {
-                // Jika benar, pindah ke MainActivity
-                sharedPref.edit() {
+                sharedPref.edit {
                     putBoolean("isLogin", true)
                     putString("username", username)
-                    apply()
                 }
-                val intent = Intent(this, MainActivity::class.java)
-
+                val intent = Intent(this, BaseActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
-                // Jika salah, tampilkan AlertDialog
                 AlertDialog.Builder(this)
+                    .setTitle("Gagal")
                     .setMessage("Silahkan coba lagi")
                     .setPositiveButton("OK", null)
                     .show()
